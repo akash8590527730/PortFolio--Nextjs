@@ -168,7 +168,7 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 type PageDocumentDataSlicesSlice =
-  | EducationSlice
+  | ExperienceSlice
   | ContentIndexSlice
   | TechListSlice
   | BioSlice;
@@ -689,45 +689,45 @@ export type ContentIndexSlice = prismic.SharedSlice<
 >;
 
 /**
- * Item in *Experience → Default → Primary → Zone*
+ * Item in *Experience → Default → Primary → zone*
  */
-export interface EducationSliceDefaultPrimaryZoneItem {
+export interface ExperienceSliceDefaultPrimaryZoneItem {
   /**
-   * Title field in *Experience → Default → Primary → Zone*
+   * Title field in *Experience → Default → Primary → zone*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.zone[].title
+   * - **API ID Path**: experience.default.primary.zone[].title
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Time Period field in *Experience → Default → Primary → Zone*
+   * Time Period field in *Experience → Default → Primary → zone*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.zone[].time_period
+   * - **API ID Path**: experience.default.primary.zone[].time_period
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   time_period: prismic.KeyTextField;
 
   /**
-   * Institution field in *Experience → Default → Primary → Zone*
+   * Institution field in *Experience → Default → Primary → zone*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.zone[].institution
+   * - **API ID Path**: experience.default.primary.zone[].institution
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   institution: prismic.KeyTextField;
 
   /**
-   * Description field in *Experience → Default → Primary → Zone*
+   * Description field in *Experience → Default → Primary → zone*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.zone[].description
+   * - **API ID Path**: experience.default.primary.zone[].description
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   description: prismic.RichTextField;
@@ -736,26 +736,26 @@ export interface EducationSliceDefaultPrimaryZoneItem {
 /**
  * Primary content in *Experience → Default → Primary*
  */
-export interface EducationSliceDefaultPrimary {
+export interface ExperienceSliceDefaultPrimary {
   /**
    * Heading field in *Experience → Default → Primary*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.heading
+   * - **API ID Path**: experience.default.primary.heading
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   heading: prismic.KeyTextField;
 
   /**
-   * Zone field in *Experience → Default → Primary*
+   * zone field in *Experience → Default → Primary*
    *
    * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: education.default.primary.zone[]
+   * - **API ID Path**: experience.default.primary.zone[]
    * - **Documentation**: https://prismic.io/docs/field#group
    */
-  zone: prismic.GroupField<Simplify<EducationSliceDefaultPrimaryZoneItem>>;
+  zone: prismic.GroupField<Simplify<ExperienceSliceDefaultPrimaryZoneItem>>;
 }
 
 /**
@@ -765,27 +765,27 @@ export interface EducationSliceDefaultPrimary {
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type EducationSliceDefault = prismic.SharedSliceVariation<
+export type ExperienceSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<EducationSliceDefaultPrimary>,
+  Simplify<ExperienceSliceDefaultPrimary>,
   never
 >;
 
 /**
  * Slice variation for *Experience*
  */
-type EducationSliceVariation = EducationSliceDefault;
+type ExperienceSliceVariation = ExperienceSliceDefault;
 
 /**
  * Experience Shared Slice
  *
- * - **API ID**: `education`
- * - **Description**: Education
+ * - **API ID**: `experience`
+ * - **Description**: Experience
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type EducationSlice = prismic.SharedSlice<
-  "education",
-  EducationSliceVariation
+export type ExperienceSlice = prismic.SharedSlice<
+  "experience",
+  ExperienceSliceVariation
 >;
 
 /**
@@ -1065,11 +1065,11 @@ declare module "@prismicio/client" {
       ContentIndexSliceDefaultPrimary,
       ContentIndexSliceVariation,
       ContentIndexSliceDefault,
-      EducationSlice,
-      EducationSliceDefaultPrimaryZoneItem,
-      EducationSliceDefaultPrimary,
-      EducationSliceVariation,
-      EducationSliceDefault,
+      ExperienceSlice,
+      ExperienceSliceDefaultPrimaryZoneItem,
+      ExperienceSliceDefaultPrimary,
+      ExperienceSliceVariation,
+      ExperienceSliceDefault,
       HeroSlice,
       HeroSliceDefaultPrimary,
       HeroSliceVariation,

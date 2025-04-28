@@ -17,7 +17,7 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "education": {
+            "experience": {
               "type": "SharedSlice"
             },
             "content_index": {

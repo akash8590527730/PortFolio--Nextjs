@@ -1,8 +1,8 @@
 {
-  "id": "education",
+  "id": "experience",
   "type": "SharedSlice",
   "name": "Experience",
-  "description": "Education",
+  "description": "Experience",
   "variations": [
     {
       "id": "default",
@@ -22,7 +22,7 @@
         "zone": {
           "type": "Group",
           "config": {
-            "label": "Zone",
+            "label": "zone",
             "repeat": true,
             "fields": {
               "title": {
