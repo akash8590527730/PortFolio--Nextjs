@@ -1,45 +1,35 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
+
 import { createClient } from "@/prismicio";
+
 import ContentBody from "@/components/ContentBody";
+// ❌ Removed: import { formatDate } from "@/utils/formatDate";
 
-// Props type for the page
-interface PageProps {
-  params: {
-    uid: string;
-  };
-}
+type Params = { uid: string };
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params }: { params: Params }) {
   const client = createClient();
-  
   const page = await client
     .getByUID("blog_post", params.uid)
     .catch(() => notFound());
-
-  if (!page) {
-    notFound();
-  }
 
   return <ContentBody page={page} />;
 }
 
-export async function generateMetadata(
-  { params }: PageProps
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
   const client = createClient();
-  
   const page = await client
     .getByUID("blog_post", params.uid)
     .catch(() => notFound());
 
-  if (!page) {
-    notFound();
-  }
-
   return {
-    title: page.data.title as string,
-    description: page.data.meta_description as string,
+    title: page.data.title,
+    description: page.data.meta_description,
   };
 }
 
