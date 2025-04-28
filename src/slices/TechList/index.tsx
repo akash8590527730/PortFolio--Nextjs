@@ -25,7 +25,7 @@ const TechList: FC<TechListProps> = ({ slice }) => {
   const component = useRef(null);
 
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       const rows = gsap.utils.toArray(".tech-row");
 
       rows.forEach((row: any, i: number) => {

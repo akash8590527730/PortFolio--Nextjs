@@ -23,13 +23,14 @@ export default function ContentList({
   const itemsRef = useRef<HTMLLIElement[]>([]);
 
   const [currentItem, setCurrentItem] = useState<null | number>(null);
+
   const [hovering, setHovering] = useState(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
   const urlPrefixes = contentType === "Blog" ? "/blog" : "/project";
   
   useEffect(() => {
     // Animate list-items in with a stagger
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       itemsRef.current.forEach((item, index) => {
         gsap.fromTo(
           item,
@@ -149,7 +150,7 @@ export default function ContentList({
                     <span className="text-3xl font-bold">{item.data.title}</span>
                     <div className="flex gap-3 text-red-400 text-lg font-bold">
                       {item.tags.map((tag, index) => (
-                        <span key={index}>{tag}</span>
+                        <span key={tag}>{tag}</span>
                       ))}
                     </div>
                   </div>
