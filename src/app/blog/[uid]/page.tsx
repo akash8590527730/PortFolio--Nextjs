@@ -7,17 +7,23 @@ import ContentBody from "@/components/ContentBody";
 type Params = { uid: string };
 
 // Ensure the Page component's params are correctly typed as { params: Params }
-export default async function Page({ params }: { params: Params }) {
+export default async function Page({
+  params,
+}: {
+  params: Params;
+}) {
   const client = createClient();
-  const page = await client
-    .getByUID("blog_post", params.uid)
-    .catch(() => notFound());
+  try {
+    const page = await client.getByUID("blog_post", params.uid);
+    
+    if (!page || !page.data) {
+      notFound(); // Ensure to handle the case if page or data is undefined
+    }
 
-  if (!page || !page.data) {
-    notFound(); // Ensure to handle the case if page or data is undefined
+    return <ContentBody page={page} />;
+  } catch (error) {
+    notFound();
   }
-
-  return <ContentBody page={page} />;
 }
 
 // Ensure generateMetadata returns a Promise<Metadata> type and params is correctly typed
@@ -25,20 +31,22 @@ export async function generateMetadata({
   params,
 }: {
   params: Params;
-}): Promise<Metadata> {  // Ensure consistent typing
+}): Promise<Metadata> {
   const client = createClient();
-  const page = await client
-    .getByUID("blog_post", params.uid)
-    .catch(() => notFound());
+  try {
+    const page = await client.getByUID("blog_post", params.uid);
 
-  if (!page || !page.data) {
-    notFound(); // Handle the case if page or data is missing
+    if (!page || !page.data) {
+      notFound(); // Handle the case if page or data is missing
+    }
+
+    return {
+      title: page.data.title,
+      description: page.data.meta_description,
+    };
+  } catch (error) {
+    return { title: "Not Found", description: "No data available" };
   }
-
-  return {
-    title: page.data.title,
-    description: page.data.meta_description,
-  };
 }
 
 // Correctly type the generateStaticParams function
