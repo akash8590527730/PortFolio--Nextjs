@@ -22,13 +22,13 @@ export type TechListProps = SliceComponentProps<Content.TechListSlice>;
  * Component for "TechList" Slices.
  */
 const TechList: FC<TechListProps> = ({ slice }) => {
-  const component = useRef(null);
+  const component = useRef<HTMLElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      const rows = gsap.utils.toArray(".tech-row");
+      const rows = gsap.utils.toArray<HTMLElement>(".tech-row"); // Type as HTMLElement
 
-      rows.forEach((row: any, i: number) => {
+      rows.forEach((row, i) => {
         gsap.fromTo(
           row,
           {
